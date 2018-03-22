@@ -19,7 +19,7 @@ public class Main {
 
     public static void main(String [] args){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://private-5039a-restapiprenosdat.apiary-mock.com")
+                .baseUrl("https://private-5039a-prenosdatrestapi.apiary-mock.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -31,7 +31,7 @@ public class Main {
         service.getUserList().enqueue(new Callback<UserList>() {
             @Override
             public void onResponse(Call<UserList> call, Response<UserList> rspns) {
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "LIST USERS [GET] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -45,8 +45,7 @@ public class Main {
         service.getSingleUser(2).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> rspns) {
-                //Logger.getGlobal().log(Level.INFO, "SINGLE USER [GET]");
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "SINGLE USER [GET] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -61,11 +60,9 @@ public class Main {
             @Override
             public void onResponse(Call<User> call, Response<User> rspns) {
                 if(rspns.isSuccessful()) {
-                   //Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET]");
-                    Logger.getGlobal().log(Level.INFO,"OK: " +  rspns.code());
+                    Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
                 } else {
-                    //Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET]");
-                    Logger.getGlobal().log(Level.INFO,"SINGLE USER NOT FOUND - CODE: " +  rspns.code());
+                    Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET] - CODE: " + rspns.code() + "\n");
                 }
             }
 
@@ -80,8 +77,7 @@ public class Main {
         service.getResourceUnknown().enqueue(new Callback<ResourceUnknown>() {
             @Override
             public void onResponse(Call<ResourceUnknown> call, Response<ResourceUnknown> rspns) {
-                //Logger.getGlobal().log(Level.INFO, "LIST <RESOURCE> [GET]");
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "LIST <RESOURCE> [GET] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -95,8 +91,7 @@ public class Main {
         service.getSingleResourceUnknown(2).enqueue(new Callback<SingleResourceUnknown>() {
             @Override
             public void onResponse(Call<SingleResourceUnknown> call, Response<SingleResourceUnknown> rspns) {
-                //Logger.getGlobal().log(Level.INFO, "LIST <RESOURCE> [GET]");
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "SINGLE <RESOURCE> [GET] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -111,11 +106,9 @@ public class Main {
             @Override
             public void onResponse(Call<SingleResourceUnknown> call, Response<SingleResourceUnknown> rspns) {
                 if(rspns.isSuccessful()) {
-                    //Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET]");
-                    Logger.getGlobal().log(Level.INFO,"OK: " +  rspns.code());
+                    Logger.getGlobal().log(Level.INFO, "SINGLE <RESOURCE> NOT FOUND [GET] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
                 } else {
-                    //Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET]");
-                    Logger.getGlobal().log(Level.INFO,"SINGLE <RESOURCE> NOT FOUND - CODE: " +  rspns.code());
+                    Logger.getGlobal().log(Level.INFO, "SINGLE <RESOURCE> NOT FOUND [GET] - CODE: " + rspns.code() + "\n");
                 }
             }
 
@@ -127,13 +120,12 @@ public class Main {
 
         // CREATE [POST]
         NewUser user = new NewUser();
-                user.name = "morpheus";
-                user.job = "leader";
+        user.name = "morpheus";
+        user.job = "leader";
         service.postUser(user).enqueue(new Callback<NewUser>() {
             @Override
             public void onResponse(Call<NewUser> call, Response<NewUser> rspns) {
-                //Logger.getGlobal().log(Level.INFO, "LIST <RESOURCE> [GET]");
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "CREATE [POST] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -149,8 +141,7 @@ public class Main {
         service.putUser(user2,2).enqueue(new Callback<UpdatedUser>() {
             @Override
             public void onResponse(Call<UpdatedUser> call, Response<UpdatedUser> rspns) {
-                //Logger.getGlobal().log(Level.INFO, "LIST <RESOURCE> [GET]");
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "UPDATE [PUT] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -163,8 +154,7 @@ public class Main {
         service.patchUser(user,2).enqueue(new Callback<UpdatedUser>() {
             @Override
             public void onResponse(Call<UpdatedUser> call, Response<UpdatedUser> rspns) {
-                //Logger.getGlobal().log(Level.INFO, "LIST <RESOURCE> [GET]");
-                Logger.getGlobal().log(Level.INFO, rspns.body().toString());
+                Logger.getGlobal().log(Level.INFO, "UPDATE [PATCH] - CODE: " + rspns.code() + "\n" + rspns.body().toString());
             }
 
             @Override
@@ -178,11 +168,9 @@ public class Main {
             @Override
             public void onResponse(Call<UpdatedUser> call, Response<UpdatedUser> rspns) {
                 if(rspns.isSuccessful()) {
-                    //Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET]");
-                    Logger.getGlobal().log(Level.INFO,"DELETE OK - CODE: " +  rspns.code());
+                    Logger.getGlobal().log(Level.INFO, "DELETE [DELETE] - CODE: " + rspns.code() + "\n");
                 } else {
-                    //Logger.getGlobal().log(Level.INFO, "SINGLE USER NOT FOUND [GET]");
-                    Logger.getGlobal().log(Level.INFO,"DELETE - CODE: " +  rspns.code());
+                    Logger.getGlobal().log(Level.INFO, "DELETE [DELETE] - CODE: " + rspns.code() + "\n");
                 }
             }
 
