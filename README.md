@@ -1,4 +1,4 @@
-# Prenos-Dat_REST_API
+# Prenos dát - testovacie api
 
 FORMAT: 1A
 HOST: https://reqres.in/api
